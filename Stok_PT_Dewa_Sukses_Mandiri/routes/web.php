@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\BarangKeluarController;
+
+Route::get('/barang', [BarangController::class,'index']);
+Route::get('/barangmasuk', [BarangMasukController::class,'index']);
+Route::get('/barangkeluar', [BarangKeluarController::class,'index']);
