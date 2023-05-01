@@ -9,6 +9,14 @@ use App\Models\Barang;
 
 class API_BarangController extends Controller
 {
+    public function index(){
+        $barang = Barang::all();
+        return response()->json([
+            'status' => 200,
+            'data' => $barang
+        ]);
+    }
+    
     public function store(Request $request){
 
         $validation = $request->validate([

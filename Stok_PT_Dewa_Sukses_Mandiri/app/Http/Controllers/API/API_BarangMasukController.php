@@ -10,6 +10,14 @@ use App\Models\BarangMasukDetail;
 
 class API_BarangMasukController extends Controller
 {
+    public function index(){
+        $masuk = BarangMasuk::all();
+        return response()->json([
+            'status' => 200,
+            'data' => $barang
+        ]);
+    }
+    
     public function store(Request $request){
         try {
             $request->validate([

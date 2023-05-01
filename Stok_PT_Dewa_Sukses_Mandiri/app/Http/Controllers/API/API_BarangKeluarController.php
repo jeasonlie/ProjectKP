@@ -10,6 +10,14 @@ use App\Models\BarangKeluarDetail;
 
 class API_BarangKeluarController extends Controller
 {
+    public function index(){
+        $keluar = BarangKeluar::all();
+        return response()->json([
+            'status' => 200,
+            'data' => $barang
+        ]);
+    }
+
     public function store(Request $request){
         try {
             $request->validate([
