@@ -9,8 +9,7 @@ use App\Models\Barang;
 class BarangController extends Controller
 {
     public function index(){
-        $barang = Barang::all();
-        return view("barang.index", compact('barang'));
+        return view("barangkeluar");
     }
 
     public function create(){
