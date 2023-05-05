@@ -16,9 +16,9 @@
             </div>
             <div class="sidebarmenu">
                 <a href="" class="menu menu1">Dashboard</a>
-                <a href="" class="menu menu2">User</a>
-                <a href="http://127.0.0.1:8000/barang" class="menu menu3">Barang</a>
-                <a href="http://127.0.0.1:8000/laporanbarang" class="menu menu4">Laporan Barang</a>
+                <a href="/admin" class="menu menu2">User</a>
+                <a href="/barang" class="menu menu3">Barang</a>
+                <a href="/laporanbarang" class="menu menu4">Laporan Barang</a>
             </div>
         </div>
         <div class="sidebar-bottom">

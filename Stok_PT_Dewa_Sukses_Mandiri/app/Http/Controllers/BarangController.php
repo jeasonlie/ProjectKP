@@ -9,7 +9,7 @@ use App\Models\Barang;
 class BarangController extends Controller
 {
     public function index(){
-        return view("barang");
+        return view("barang.index");
     }
 
     public function create(){

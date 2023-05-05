@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 .sideBar{
     height: 100vh;
     width: 20vw;
@@ -13,6 +15,7 @@ body{
     display: flex;
 }
 *{
+    font-family: 'Poppins', sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: content-box;
@@ -61,7 +64,12 @@ body{
 table{
     border-collapse: collapse;
 }
-table td, table th{
+table#isi td, table#isi th{
     padding: 8px 16px;
     border: 1px solid;
+}
+table#form td, table#form th{
+    padding-left: 1px;
+    padding-right: 5px;
+    text-align: start;
 }
