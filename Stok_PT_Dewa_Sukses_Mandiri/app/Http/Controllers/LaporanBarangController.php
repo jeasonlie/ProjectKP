@@ -11,7 +11,7 @@ class LaporanBarangController extends Controller
 {
     public function index(){
         $laporan_barang = LaporanBarang::all();
-        return view("laporan.index", compact('laporan'));
+        return view("laporan.index", compact('laporan_barang'));
     }
     
     public function select($id){
@@ -20,7 +20,7 @@ class LaporanBarangController extends Controller
         if($laporan_barang){
             $laporan_barangDetail = LaporanBarangDetail::where('id_laporan', $id)->get();
 
-            return view("laporan.detail", compact(['laporan', 'laporanDetail']));
+            return view("laporan.detail", compact(['laporan_barang', 'laporanDetail']));
         }else{
             return redirect()->route("laporan.index")->withErrors(['errors' => 'Data Barang Masuk tidak valid']);
         }
