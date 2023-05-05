@@ -18,9 +18,7 @@ Route::get('/', function () {
 });
 
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\BarangMasukController;
-use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\LaporanBarangController;
 
 Route::get('/barang', [BarangController::class,'index']);
-Route::get('/barangmasuk', [BarangMasukController::class,'index']);
-Route::get('/barangkeluar', [BarangKeluarController::class,'index']);
+Route::get('/laporanbarang', [LaporanBarangController::class,'index']);
