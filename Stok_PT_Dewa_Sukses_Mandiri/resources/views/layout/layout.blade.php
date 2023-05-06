@@ -8,31 +8,29 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="sideBar">
-        <div class="sidebar-top">
-            <div class="sidebarlogo">
-                <img src="{{asset('logo.png')}}" alt="">
-                <p>PT. DEWA SUKSES MANDIRI</p>
-            </div>
-            <div class="sidebarmenu">
-                <a href="" class="menu menu1">Dashboard</a>
-                <a href="/admin" class="menu menu2">User</a>
-                <a href="/barang" class="menu menu3">Barang</a>
-                <a href="/laporanbarang" class="menu menu4">Laporan Barang</a>
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="{{asset('logo.png')}}" alt="">
+            <div class="sidebar-namaperusahaan">
+                PT. Dewa Sukses Mandiri
             </div>
         </div>
-        <div class="sidebar-bottom">
-            <p>Jeason Lie</p>
-            <p>Pengangguran</p>
-            <div class="tampilanlogout">
-                <img src="{{asset('logout.svg')}}" alt="">
-                <a href="" class="logout">Logout</a>
-            </div>
+        <div class="sidebar-menu">
+            <div class="menu"><a href="">Dashboard</a></div>
+            <div class="menu"><a href="/user">Admin</a></div>
+            <div class="menu"><a href="/barang">Barang</a></div>
+            <div class="menu"><a href="/laporanbarang">Laporan Barang</a></div>
         </div>
-
+        <div class="sidebar-user">
+            <div class="nama">
+                <div class="user">Nama</div>
+                <div class="user">Role</div>
+            </div>
+            <div class="logout"><a href=""><img src="{{asset('logout.svg')}}" alt=""> logout</a></div>
+        </div>
     </div>
     <div class="content">
-        @yield('content')
+        @yield("content")
     </div>
 </body>
 </html>
