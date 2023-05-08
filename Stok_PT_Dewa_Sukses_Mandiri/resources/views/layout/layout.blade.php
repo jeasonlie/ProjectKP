@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="sidebar-menu">
-            <div class="menu"><a href="">Dashboard</a></div>
+            <div class="menu"><a href="/dashboard">Dashboard</a></div>
             <div class="menu"><a href="/user">Admin</a></div>
             <div class="menu"><a href="/barang">Barang</a></div>
             <div class="menu"><a href="/laporanbarang">Laporan Barang</a></div>

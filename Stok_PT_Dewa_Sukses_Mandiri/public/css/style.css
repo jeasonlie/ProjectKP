@@ -100,3 +100,37 @@ body{
     padding-left: 20px;
     padding-top: 10px;
 }
+.isi-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 50px;
+}
+.isi-content>div>a{
+    display: block;
+    height: 100px;
+    width: 200px;
+    padding-top: 5px;
+    padding-left: 10px;
+    color: #ffffff;
+}
+.isi-content>div{
+    border-radius: 10px;
+}
+.content-jumlah{
+    background-color: #7BAF66;
+    color: #ffffff;
+}
+.content-masuk{
+    background-color: #3C748B;
+    color: #ffffff;
+}
+.content-keluar{
+    background-color: #A66C7D;
+    color: #ffffff;
+}
+.judul-content>.intro{
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: -10px;
+}
