@@ -39,8 +39,6 @@ class API_BarangController extends Controller
                 'error' => $err
             ],400);
         }
-
-        
     }
     public function update(Request $request, $id)
     {
