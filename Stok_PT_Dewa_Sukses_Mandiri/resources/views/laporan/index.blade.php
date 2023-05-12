@@ -2,18 +2,21 @@
 @section('content')
 <div class="title">
         Laporan Barang
+        <div class="sub-title">
+            Ketuk + Untuk Menambah List Barang
+        </div>
     </div>
     <br>
     <div class="input">
         <form action="">
             <button>
-                Tambah Barang
+                +
             </button>
             <br><br>
             <table id="form">
                 <tr>
                     <th>
-                        ID Barang
+                        Nama Barang
                     </th>
                     
                     <th>
@@ -54,23 +57,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                </tr>
+               
             </tbody>
         </table>
     </div>
@@ -78,6 +65,8 @@
 @section('script')
 
 <script>
+    const formStore = document.querySelector('form.store');
+    const innerHTML = formStore.innerHTML;
     const url = window.location.origin+"/api/laporanbarang";
     getData();
     async function getData(){
@@ -87,51 +76,53 @@
             const table = document.querySelector('table tbody');
             let rows = '';
             data.data.forEach((element,index) => {
-                const form = document.createElement('form');
-                form.innerHTML = `
+                const newRow = 
+                `
                     <tr>
-                            <td>
-                                ${++index}
-                            </td>
-                            <td>
-                                <input class="input-${element.id}" type="text" name="nama" id="" value="${element.nama_barang}" readonly>
-                            </td>
-                            <td>
-                                <input class="input-${element.id}" type="text" name="stok" id="" value="${element.stok}" readonly>
-                            </td>
-                            <td>
-                                <button class="edit-${element.id}"onClick = 'toggle(${element.id});'>
-                                    Edit
-                                </button>
-                                <button class="simpan-${element.id}" onClick = 'updateData(${element.id})' style = 'display:none;'>
-                                    Simpan
-                                </button>
-                            </td>
-                            <td>
-                                <button onClick = 'deleteData(${element.id})'>
-                                    Delete
-                                </button>
-                            </td>
+                        <td>
+                            ${++index}
+                        </td>
+                        <td>
+                            ${element.jumlah}
+                        </td>
+                        <td>
+                            ${element.keterangan}
+                        </td>
+                        <td>
+                            <button class="edit-${element.id}"onClick = 'edit(${JSON.stringify(element)});'>
+                                Edit
+                            </button>
+                        </td>
                     </tr>
                 `
-                form.id = element.id;
-                rows += form;
+                rows += newRow;
             });
-            table.appendChild(rows);
+            table.innerHTML = rows;
         }
         catch(err){
             console.error(err);
         }
     }
-    function toggle(id){
-        const inputs = document.querySelectorAll('.input-'+id);
-        inputs.forEach(input => {
-            input.readOnly = !input.readOnly;
-        });
-        const edits = document.querySelector('.edit-'+id);
-        edits.style.display = 'none';
-        const simpans = document.querySelector('.simpan-'+id);
-        simpans.style.display = 'block';
+    function edit(obj){
+        formStore.innerHTML = 
+        `
+        <label for="">
+                Nama Barang
+            </label>
+            <br>
+            <input type="text" name="nama" id="" value=${obj.nama_barang}>
+            <br>
+            <label for="">
+                Stock
+            </label>
+            <br>
+            <input type="number" name="stok" id="" value=${obj.stok}>
+            <br><br>
+            <button onClick = 'updateData(${obj.id})'>
+                Simpan
+            </button>
+            <input type="hidden" id="csrfToken" value="{{ csrf_token()}}">
+        `
     }
     async function storeData(){
         event.preventDefault();
@@ -158,31 +149,31 @@
         event.preventDefault();
         try {
             const crsfToken = document.querySelector('#csrfToken').value;
-            const form = document.querySelector('#form-'+id);
+            const form = document.querySelector('form.store');
             const formData = new FormData(form);
-            console.log(form.innerHTML);
-            console.log(url+'/'+id);
             const response = await fetch(url+'/'+id,{
                 headers: {
                     "Content-Type": "application/json",
                     "X-CSRF-Token": csrfToken
                 },
-                method: "patch",
+                method: "post",
                 credentials: "same-origin",
                 body: JSON.stringify(Object.fromEntries(formData))
             });
             await getData();
+            tambah();
         } 
         catch (err) {
             console.error(err);
         }
     }
+    function tambah() {
+        formStore.innerHTML = innerHTML;
+    }
     async function deleteData(id){
         event.preventDefault();
         try {
             const crsfToken = document.querySelector('#csrfToken').value;
-            const form = document.querySelector('#form-'+id);
-            const formData = new FormData(form);
             const response = await fetch(url+'/'+id,{
                 headers: {
                     "Content-Type": "application/json",
@@ -190,7 +181,6 @@
                 },
                 method: "delete",
                 credentials: "same-origin",
-                body: JSON.stringify(Object.fromEntries(formData))
             });
             await getData();
         } 

@@ -19,8 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 use App\Http\Controllers\API\API_BarangController;
-use App\Http\Controllers\API\API_BarangMasukController;
-use App\Http\Controllers\API\API_BarangKeluarController;
+use App\Http\Controllers\API\API_LaporanBarangController;
 
 Route::get('/barang', [API_BarangController::class,'index']);
 Route::post('/barang/{id}', [API_BarangController::class,'update']);
