@@ -60,7 +60,7 @@
                 `
                     <tr>
                         <td>
-                            ${element.id}
+                            ${"B"+element.id}
                         </td>
                         <td>
                             ${element.nama_barang}

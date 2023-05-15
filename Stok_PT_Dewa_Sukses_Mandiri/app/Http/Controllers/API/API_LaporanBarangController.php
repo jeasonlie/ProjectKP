@@ -14,7 +14,7 @@ class API_LaporanBarangController extends Controller
         $laporan_barang = LaporanBarang::all();
         return response()->json([
             'status' => 200,
-            'data' => $barang
+            'data' => $laporan_barang
         ]);
     }
     
