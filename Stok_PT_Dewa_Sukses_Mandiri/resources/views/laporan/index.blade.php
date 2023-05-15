@@ -10,13 +10,13 @@
     <div class="input">
         <form action="">
             <button>
-                +
+                + Barang
             </button>
             <br><br>
             <table id="form">
                 <tr>
                     <th>
-                        Nama Barang
+                        ID Barang
                     </th>
                     
                     <th>
@@ -50,7 +50,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama Barang</th>
+                    <th>ID Barang</th>
                     <th>Jumlah Masuk/Keluar</th>
                     <th>Keterangan</th>
                     <th>Tanggal</th>

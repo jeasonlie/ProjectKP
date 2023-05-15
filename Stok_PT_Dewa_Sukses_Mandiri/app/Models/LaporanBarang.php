@@ -9,4 +9,8 @@ class LaporanBarang extends Model
 {
     use HasFactory;
     Protected $table = 'laporan_barang';
+
+    function LaporanBarangDetail(){
+        return $this->hasMany(LaporanBarangDetail::class);
+    }
 }

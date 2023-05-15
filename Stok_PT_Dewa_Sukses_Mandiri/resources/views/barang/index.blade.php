@@ -29,7 +29,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th>ID Barang</th>
                     <th>Nama Barang</th>
                     <th>Stock</th>
                     <th>Edit</th>
@@ -60,7 +60,7 @@
                 `
                     <tr>
                         <td>
-                            ${++index}
+                            ${element.id}
                         </td>
                         <td>
                             ${element.nama_barang}
