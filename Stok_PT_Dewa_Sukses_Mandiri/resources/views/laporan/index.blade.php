@@ -15,15 +15,15 @@
             <br><br>
             <table id="form">
                 <tr>
-                    <th>
+                    <td>
                         ID Barang
-                    </th>
-                    <th>
+                    </td>
+                    <td>
                         Stok
-                    </th>
-                    <th>
+                    </td>
+                    <td>
                         Jumlah Masuk/Keluar
-                    </th>
+                    </td>
                 </tr>
                 <tr id="tr-1">
                     <td>
