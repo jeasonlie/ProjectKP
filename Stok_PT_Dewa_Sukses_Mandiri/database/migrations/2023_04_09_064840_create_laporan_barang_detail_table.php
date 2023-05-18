@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('laporan_barang_detail', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_laporan_barang');
-            $table->foreign('id_laporan_barang')->references('id')->on('laporan_barang');
+            $table->foreign('id_laporan_barang')->references('id')->on('laporan_barang')->onDelete("cascade");
             $table->unsignedBigInteger('id_barang');
-            $table->foreign('id_barang')->references('id')->on('barang');
+            $table->foreign('id_barang')->references('id')->on('barang')->onDelete("cascade");
             $table->integer('jumlah');
             $table->timestamps();
         });

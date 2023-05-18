@@ -12,12 +12,7 @@
             <br>
             <input type="text" name="nama" id="">
             <br>
-            <label for="">
-                Stock
-            </label>
             <br>
-            <input type="number" name="stok" id="">
-            <br><br>
             <button onClick = 'storeData()'>
                 Tambah 
             </button>

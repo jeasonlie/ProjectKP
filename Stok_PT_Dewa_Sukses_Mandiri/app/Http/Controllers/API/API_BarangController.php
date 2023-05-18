@@ -21,12 +21,11 @@ class API_BarangController extends Controller
         try {
             $validation = $request->validate([
                 'nama' => 'required|min:3|max:255',
-                'stok' => 'required|numeric|min:0|max: 999999999999',
             ]);
     
             $barang = new barang();
             $barang->nama_barang = $request->nama;
-            $barang->stok = $request->stok;
+            $barang->stok = 0;
             $barang->save();
     
             return response()->json([
@@ -48,11 +47,9 @@ class API_BarangController extends Controller
 
             $validation = $request->validate([
                 'nama' => 'required|min:3|max:255',
-                'stok' => 'required|numeric|min:0|max:999999999999',
             ]);
 
             $barang->nama_barang = $request->nama;
-            $barang->stok = $request->stok;
             $barang->save();
 
             return response()->json([

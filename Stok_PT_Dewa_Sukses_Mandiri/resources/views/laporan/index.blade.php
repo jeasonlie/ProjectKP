@@ -9,7 +9,7 @@
     <br>
     <div class="input">
         <form class="store" action="">
-            <button>
+            <button type = "button" onclick="tambah_list()">
                 + Barang
             </button>
             <br><br>
@@ -25,9 +25,9 @@
                         Jumlah Masuk/Keluar
                     </th>
                 </tr>
-                <tr>
+                <tr id="tr-1">
                     <td>
-                        <select name="id_barang" id="id">
+                        <select class="select2-script" name="id_barang">
                             <option value="" style="display:none">Pilih ID Barang</option>
                         </select>
                     </td>
@@ -37,15 +37,34 @@
                     <td>
                         <input type="number" name="jumlah" id="">
                     </td>
+                    <td>
+                        <button type = "button" class="btn-remove" onclick="hapus_list('tr-1')" style="display:none">
+                            - Barang
+                        </button>
+                    </td>
                 </tr>
             </table>
             <br>
-            <label for="">
-                Keterangan
-            </label>
+            <div style="display:flex">
+                <div>
+                    <label for="">
+                        Keterangan
+                    </label>
+                    <br>
+                    <input type="text" name="keterangan">
+                </div>
+                <div>
+                    <label for="">
+                        Tipe
+                    </label>
+                    <br>
+                    <select name="isMasuk" id="">
+                        <option value="1">Masuk</option>
+                        <option value="0">Keluar</option>
+                    </select>
+                </div>
+            </div>
             <br>
-            <input type="text" name="keterangan">
-            <br><br>
             <button>
                 Tambah
             </button>
@@ -72,11 +91,76 @@
 @section('script')
 
 <script>
-    $(document).ready(function(){
-        $('#id').select2({
-            placeholder:'Pilih ID Barang'
-        });
-    })
+    let i = 1;
+    let j = 2;
+    let data_barang = [];
+
+    function tambah_list() {
+        const table = document.querySelector('#form');
+        let tambah_list = 
+        `
+        <tr id="tr-${j}">
+            <td>
+                <select class="select2-script" name="id_barang">
+                    <option value="" style="display:none">Pilih ID Barang</option>
+                </select>
+            </td>
+            <td>
+                <input type="number"  id="stok">
+            </td>
+            <td>
+                <input type="number" name="jumlah" id="">
+            </td>
+            <td>
+                <button type="button" class="btn-remove" onclick="hapus_list('tr-${j}')">
+                    - Barang
+                </button>
+            </td>
+        </tr>
+        `
+        table.insertAdjacentHTML("beforeend", tambah_list);
+        i++;
+        j++;
+        if(i>1){
+            document.querySelectorAll(".btn-remove").forEach(element => {
+                element.style.display="inline";
+            });;
+        }
+        render_select2();
+    }
+    function hapus_list(e) {
+        const tr = document.querySelector("#"+e);
+        tr.remove();
+        --i;
+        if (i < 2) {
+            const btnRemoveElements = document.querySelectorAll('.btn-remove');
+            btnRemoveElements.forEach(element => {
+                element.style.display = 'none';
+            });
+        }
+    }
+    function render_select2() {
+        const select = document.querySelectorAll('.select2-script');
+            select.forEach(element2 => {
+                let options = '';
+                data_barang.forEach((element,index) => {
+                    const newOption = 
+                    `
+                    <option value="${element.id}">${element.nama_barang}</option>
+                    `
+                    options += newOption;
+                });
+                element2.innerHTML = options;
+            });
+            $('.select2-script').select2({
+                placeholder:'--Pilih ID Barang--'
+            });
+    }
+    // $(document).ready(function(){
+    //     $('#id').select2({
+    //         placeholder:'--Pilih ID Barang--'
+    //     });
+    // })
     const formStore = document.querySelector('form.store');
     const innerHTML = formStore.innerHTML;
     const url = window.location.origin+"/api/laporanbarang";
@@ -86,16 +170,8 @@
         try{
             const response = await fetch(window.location.origin+"/api/barang");
             const data = await response.json();
-            const select = document.querySelector('#id');
-            let options = '';
-            data.data.forEach((element,index) => {
-                const newOption = 
-                `
-                <option value="${element.id}">${element.nama_barang}</option>
-                `
-                options += newOption;
-            });
-            select.insertAdjacentHTML("beforeend", options);
+            data_barang = data.data;
+            render_select2();
         }
         catch(err){
             console.error(err);
