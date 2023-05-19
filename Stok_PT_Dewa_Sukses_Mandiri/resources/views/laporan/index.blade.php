@@ -27,7 +27,7 @@
                 </tr>
                 <tr id="tr-1">
                     <td>
-                        <select class="select2-script" name="id_barang">
+                        <select class="select2-script" name="id_barang[]">
                             <option value="" style="display:none">Pilih ID Barang</option>
                         </select>
                     </td>
@@ -35,7 +35,7 @@
                         <input type="number"  id="stok">
                     </td>
                     <td>
-                        <input type="number" name="jumlah" id="">
+                        <input type="number" name="jumlah[]" id="">
                     </td>
                     <td>
                         <button type = "button" class="btn-remove" onclick="hapus_list('tr-1')" style="display:none">
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <br>
-            <button>
+            <button onclick="storeData()">
                 Tambah
             </button>
         </form>
@@ -101,7 +101,7 @@
         `
         <tr id="tr-${j}">
             <td>
-                <select class="select2-script" name="id_barang">
+                <select class="select2-script" name="id_barang[]">
                     <option value="" style="display:none">Pilih ID Barang</option>
                 </select>
             </td>
@@ -109,7 +109,7 @@
                 <input type="number"  id="stok">
             </td>
             <td>
-                <input type="number" name="jumlah" id="">
+                <input type="number" name="jumlah[]" id="">
             </td>
             <td>
                 <button type="button" class="btn-remove" onclick="hapus_list('tr-${j}')">
@@ -235,13 +235,13 @@
     async function storeData(){
         event.preventDefault();
         try{
-            const crsfToken = document.querySelector('#csrfToken').value;
             const form = document.querySelector('form.store');
             const formData = new FormData(form);
+            console.log(JSON.stringify(formDataToObject(formData)));
             const response = await fetch(url,{
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-Token": csrfToken
+                    "X-CSRF-Token": "{{csrf_token()}}"
                 },
                 method: "post",
                 credentials: "same-origin",
