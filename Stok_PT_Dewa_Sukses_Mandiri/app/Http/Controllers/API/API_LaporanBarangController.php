@@ -38,6 +38,7 @@ class API_LaporanBarangController extends Controller
     
             $laporan_barang->tanggal = $request->tanggal;
             $laporan_barang->keterangan = $request->keterangan;
+            $laporan_barang->is_masuk = $request->is_masuk;
             $laporan_barang->save();
     
             for($i = 0; $i < count($request->id_barang); $i++){

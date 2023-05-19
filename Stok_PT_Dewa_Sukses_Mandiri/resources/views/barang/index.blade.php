@@ -61,7 +61,7 @@
                             ${element.nama_barang}
                         </td>
                         <td>
-                            ${element.stok}
+                            ${element.total_masuk - element.total_keluar}
                         </td>
                         <td>
                             <button class="edit-${element.id}"onClick = 'edit(${JSON.stringify(element)});'>
@@ -92,12 +92,7 @@
             <br>
             <input type="text" name="nama" id="" value=${obj.nama_barang}>
             <br>
-            <label for="">
-                Stock
-            </label>
             <br>
-            <input type="number" name="stok" id="" value=${obj.stok}>
-            <br><br>
             <button onClick = 'updateData(${obj.id})'>
                 Simpan
             </button>

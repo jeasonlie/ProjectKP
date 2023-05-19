@@ -10,25 +10,34 @@ use App\Models\Barang;
 class API_BarangController extends Controller
 {
     public function index(){
-        $barang = DB::table('barang')
-    ->leftJoinSub(function ($query) {
-        $query->select('laporan_barang.id', 'laporan_barang_detail.id_barang', DB::raw('SUM(laporan_barang_detail.jumlah) AS total_masuk'))
-            ->from('laporan_barang_detail')
-            ->join('laporan_barang', 'laporan_barang.id', '=', 'laporan_barang_detail.id_laporan_barang')
-            ->where('laporan_barang.is_masuk', '=', 1)
-            ->groupBy('laporan_barang.id', 'laporan_barang_detail.id_barang');
-    }, 'barang_masuk', 'barang_masuk.id_barang', '=', 'barang.id')
-    ->leftJoinSub(function ($query) {
-        $query->select('laporan_barang.id', 'laporan_barang_detail.id_barang', DB::raw('SUM(laporan_barang_detail.jumlah) AS total_keluar'))
-            ->from('laporan_barang_detail')
-            ->join('laporan_barang', 'laporan_barang.id', '=', 'laporan_barang_detail.id_laporan_barang')
-            ->where('laporan_barang.is_masuk', '=', 0)
-            ->groupBy('laporan_barang.id', 'laporan_barang_detail.id_barang');
-    }, 'barang_keluar', 'barang_keluar.id_barang', '=', 'barang.id')
-    ->select('barang.nama_barang', 'barang.id', DB::raw('SUM(barang_masuk.total_masuk) AS total_masuk'), DB::raw('SUM(barang_keluar.total_keluar) AS total_keluar'))
-    ->groupBy('barang.id')
-    ->get();
-
+        $barang = DB::select("SELECT barang.id, barang.nama_barang, sum(barang_masuk.total_masuk) as total_masuk, sum(barang_keluar.total_keluar) as total_keluar
+        FROM barang
+        LEFT JOIN (
+            SELECT *
+            FROM laporan_barang
+            WHERE is_masuk = 1
+        ) AS masuk ON masuk.id = barang.id
+        LEFT JOIN (
+            SELECT laporan_barang.id, laporan_barang_detail.id_barang, SUM(laporan_barang_detail.jumlah) AS total_masuk
+            FROM laporan_barang_detail
+            INNER JOIN laporan_barang ON laporan_barang.id = laporan_barang_detail.id_laporan_barang
+            WHERE laporan_barang.is_masuk = 1
+            GROUP BY laporan_barang.id, laporan_barang_detail.id_barang  -- Include laporan_barang.id in the GROUP BY clause
+        ) AS barang_masuk ON barang_masuk.id_barang = barang.id
+        LEFT JOIN (
+            SELECT *
+            FROM laporan_barang
+            WHERE is_masuk = 0
+        ) AS keluar ON keluar.id = barang.id
+        LEFT JOIN (
+            SELECT laporan_barang.id, laporan_barang_detail.id_barang, SUM(laporan_barang_detail.jumlah) AS total_keluar
+            FROM laporan_barang_detail
+            INNER JOIN laporan_barang ON laporan_barang.id = laporan_barang_detail.id_laporan_barang
+            WHERE laporan_barang.is_masuk = 0
+            GROUP BY laporan_barang.id, laporan_barang_detail.id_barang  -- Include laporan_barang.id in the GROUP BY clause
+        ) AS barang_keluar ON barang_keluar.id_barang = barang.id
+        GROUP BY barang.id, barang.nama_barang
+        ");
         return response()->json([
             'status' => 200,
             'data' => $barang
@@ -43,7 +52,6 @@ class API_BarangController extends Controller
     
             $barang = new barang();
             $barang->nama_barang = $request->nama;
-            $barang->stok = 0;
             $barang->save();
     
             return response()->json([

@@ -58,7 +58,7 @@
                         Tipe
                     </label>
                     <br>
-                    <select name="isMasuk" id="">
+                    <select name="is_masuk" id="">
                         <option value="1">Masuk</option>
                         <option value="0">Keluar</option>
                     </select>
@@ -245,7 +245,7 @@
                 },
                 method: "post",
                 credentials: "same-origin",
-                body: JSON.stringify(Object.fromEntries(formData))
+                body: JSON.stringify(formDataToObject(formData))
             });
             await getData();
         }
@@ -295,6 +295,61 @@
         catch (err) {
             console.error(err);
         }
+    }
+    function formDataToObject(formData) {
+        let object = {}
+
+        const debug = (message) => {
+            //console.log(message)
+        }
+        const parseKey = (key) => {
+            const subKeyIdx = key.indexOf('[');
+
+            if (subKeyIdx !== -1) {
+                const keys = [key.substring(0, subKeyIdx)]
+                key = key.substring(subKeyIdx)
+
+                for (const match of key.matchAll(/\[(?<key>.*?)]/gm)) {
+                    keys.push(match.groups.key)
+                }
+                return keys
+            } else {
+                return [key]
+            }
+        }
+        const assign = (keys, value, object) => {
+            const key = keys.shift()
+            debug(key)
+            debug(keys)
+
+            if (key === '' || key === undefined) {
+                return object.push(value)
+            }
+
+            if (Reflect.has(object, key)) {
+                debug('hasKey ' + key)
+                if (keys.length === 0) {
+                    if (!Array.isArray(object[key])) {
+                        debug('isArray ' + object[key])
+                        object[key] = [object[key], value]
+                        return
+                    }
+                }
+                return assign(keys, value, object[key])
+            }
+            if (keys.length >= 1) {
+                debug(`undefined '${key}' key: remaining ${keys.length}`)
+                object[key] = keys[0] === '' ? [] : {}
+                return assign(keys, value, object[key])
+            } else {
+                debug("set value: " + value)
+                object[key] = value
+            }
+        }
+        for (const pair of formData.entries()) {
+            assign(parseKey(pair[0]), pair[1], object)
+        }
+        return object
     }
 </script>
 @endsection
