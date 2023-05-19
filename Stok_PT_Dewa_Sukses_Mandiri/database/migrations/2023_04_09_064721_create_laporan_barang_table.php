@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime('tanggal');
             $table->text('keterangan')->nullable();
-            $table->boolean('isMasuk');
+            $table->boolean('is_masuk');
             $table->timestamps();
         });
     }

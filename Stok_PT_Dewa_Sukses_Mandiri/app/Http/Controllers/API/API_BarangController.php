@@ -10,7 +10,25 @@ use App\Models\Barang;
 class API_BarangController extends Controller
 {
     public function index(){
-        $barang = Barang::all();
+        $barang = DB::table('barang')
+    ->leftJoinSub(function ($query) {
+        $query->select('laporan_barang.id', 'laporan_barang_detail.id_barang', DB::raw('SUM(laporan_barang_detail.jumlah) AS total_masuk'))
+            ->from('laporan_barang_detail')
+            ->join('laporan_barang', 'laporan_barang.id', '=', 'laporan_barang_detail.id_laporan_barang')
+            ->where('laporan_barang.is_masuk', '=', 1)
+            ->groupBy('laporan_barang.id', 'laporan_barang_detail.id_barang');
+    }, 'barang_masuk', 'barang_masuk.id_barang', '=', 'barang.id')
+    ->leftJoinSub(function ($query) {
+        $query->select('laporan_barang.id', 'laporan_barang_detail.id_barang', DB::raw('SUM(laporan_barang_detail.jumlah) AS total_keluar'))
+            ->from('laporan_barang_detail')
+            ->join('laporan_barang', 'laporan_barang.id', '=', 'laporan_barang_detail.id_laporan_barang')
+            ->where('laporan_barang.is_masuk', '=', 0)
+            ->groupBy('laporan_barang.id', 'laporan_barang_detail.id_barang');
+    }, 'barang_keluar', 'barang_keluar.id_barang', '=', 'barang.id')
+    ->select('barang.nama_barang', 'barang.id', DB::raw('SUM(barang_masuk.total_masuk) AS total_masuk'), DB::raw('SUM(barang_keluar.total_keluar) AS total_keluar'))
+    ->groupBy('barang.id')
+    ->get();
+
         return response()->json([
             'status' => 200,
             'data' => $barang
