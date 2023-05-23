@@ -11,7 +11,9 @@ use App\Models\LaporanBarangDetail;
 class API_LaporanBarangController extends Controller
 {
     public function index(){
-        $laporan_barang = LaporanBarang::all();
+        $laporan_barang = LaporanBarang::with(['LaporanBarangDetail' => function ($query) {
+            $query->with('Barang');
+        }])->get();
         return response()->json([
             'status' => 200,
             'data' => $laporan_barang

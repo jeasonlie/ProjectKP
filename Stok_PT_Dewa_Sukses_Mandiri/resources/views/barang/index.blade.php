@@ -1,20 +1,20 @@
 @extends('layout.layout')
 @section('content')
     <div class="title">
-        Barang
+        BARANG
     </div>
     <br>
     <div class="input">
         <form class="store">
             <label for="">
-                Nama Barang
+                NAMA BARANG
             </label>
             <br>
             <input type="text" name="nama" id="">
             <br>
             <br>
             <button onClick = 'storeData()'>
-                Tambah 
+                TAMBAH
             </button>
             <input type="hidden" id="csrfToken" value="{{ csrf_token()}}">
         </form>
@@ -24,11 +24,11 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID Barang</th>
-                    <th>Nama Barang</th>
-                    <th>Stock</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>ID BARANG</th>
+                    <th>NAMA BARANG</th>
+                    <th>STOCK</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
                 </tr>
             </thead>
             <tbody>
@@ -87,14 +87,14 @@
         formStore.innerHTML = 
         `
         <label for="">
-                Nama Barang
+                NAMA BARANG
             </label>
             <br>
             <input type="text" name="nama" id="" value=${obj.nama_barang}>
             <br>
             <br>
             <button onClick = 'updateData(${obj.id})'>
-                Simpan
+                SIMPAN
             </button>
             <input type="hidden" id="csrfToken" value="{{ csrf_token()}}">
         `

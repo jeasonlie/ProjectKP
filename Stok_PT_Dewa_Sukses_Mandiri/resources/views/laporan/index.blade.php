@@ -1,7 +1,7 @@
 @extends('layout.layout')
 @section('content')
 <div class="title">
-        Laporan Barang
+        LAPORAN BARANG
         <div class="sub-title">
             Ketuk + Untuk Menambah List Barang
         </div>
@@ -16,19 +16,19 @@
             <table id="form">
                 <tr>
                     <td>
-                        ID Barang
+                        ID BARANG
                     </td>
                     <td>
-                        Stok
+                        STOCK
                     </td>
                     <td>
-                        Jumlah Masuk/Keluar
+                        JUMLAH MASUK/KELUAR
                     </td>
                 </tr>
                 <tr id="tr-1">
                     <td>
                         <select class="select2-script" name="id_barang[]">
-                            <option value="" style="display:none">Pilih ID Barang</option>
+                            <option value="" style="display:none">--Pilih ID Barang--</option>
                         </select>
                     </td>
                     <td>
@@ -39,7 +39,7 @@
                     </td>
                     <td>
                         <button type = "button" class="btn-remove" onclick="hapus_list('tr-1')" style="display:none">
-                            - Barang
+                            - BARANG
                         </button>
                     </td>
                 </tr>
@@ -48,25 +48,25 @@
             <div style="display:flex">
                 <div>
                     <label for="">
-                        Keterangan
+                        KETERANGAN
                     </label>
                     <br>
                     <input type="text" name="keterangan">
                 </div>
                 <div>
                     <label for="">
-                        Tipe
+                        TIPE
                     </label>
                     <br>
                     <select name="is_masuk" id="">
-                        <option value="1">Masuk</option>
-                        <option value="0">Keluar</option>
+                        <option value="1">MASUK</option>
+                        <option value="0">KELUAR</option>
                     </select>
                 </div>
             </div>
             <br>
             <button onclick="storeData()">
-                Tambah
+                TAMBAH
             </button>
         </form>
     </div>
@@ -75,11 +75,11 @@
         <table id="isi">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>ID Barang</th>
-                    <th>Jumlah Masuk/Keluar</th>
-                    <th>Keterangan</th>
-                    <th>Tanggal</th>
+                    <th>N0</th>
+                    <th>TANGGAL</th>
+                    <th>NAMA BARANG</th>
+                    <th>KETERANGAN</th>
+                    <th>TIPE</th>
                 </tr>
             </thead>
             <tbody>
@@ -156,11 +156,6 @@
                 placeholder:'--Pilih ID Barang--'
             });
     }
-    // $(document).ready(function(){
-    //     $('#id').select2({
-    //         placeholder:'--Pilih ID Barang--'
-    //     });
-    // })
     const formStore = document.querySelector('form.store');
     const innerHTML = formStore.innerHTML;
     const url = window.location.origin+"/api/laporanbarang";
@@ -184,22 +179,36 @@
             const table = document.querySelector('#isi tbody');
             let rows = '';
             data.data.forEach((element,index) => {
-                const newRow = 
+                let newRow = 
                 `
                     <tr>
                         <td>
                             ${++index}
                         </td>
                         <td>
-                            ${element.jumlah}
+                            `
+                            newRow+=new Date(element.created_at).toISOString().slice(0, 10)
+                            newRow+=`
+                        </td>
+                        <td>
+                            `
+                            for (let i = 0; i < element.laporan_barang_detail.length; i++) {
+                                newRow+=`${element.laporan_barang_detail[i].barang.nama_barang}`
+                            }
+                            newRow+=`
                         </td>
                         <td>
                             ${element.keterangan}
                         </td>
                         <td>
-                            <button class="edit-${element.id}"onClick = 'edit(${JSON.stringify(element)});'>
-                                Edit
+                            ${element.is_masuk}
+                        </td>
+                        <td>
+                        <a href="/laporanbarang/${element.id}">
+                            <button>
+                                DETAIL
                             </button>
+                        </a>
                         </td>
                     </tr>
                 `
@@ -210,27 +219,6 @@
         catch(err){
             console.error(err);
         }
-    }
-    function edit(obj){
-        formStore.innerHTML = 
-        `
-            <label for="">
-                Nama Barang
-            </label>
-            <br>
-            <input type="text" name="nama" id="" value=${obj.id_barang}>
-            <br>
-            <label for="">
-                Stock
-            </label>
-            <br>
-            <input type="number" name="stok" id="" value=${obj.stok}>
-            <br><br>
-            <button onClick = 'updateData(${obj.id})'>
-                Simpan
-            </button>
-            <input type="hidden" id="csrfToken" value="{{ csrf_token()}}">
-        `
     }
     async function storeData(){
         event.preventDefault();
@@ -252,31 +240,6 @@
         catch(err){
             console.error(err);
         }
-    }
-    async function updateData(id){
-        event.preventDefault();
-        try {
-            const crsfToken = document.querySelector('#csrfToken').value;
-            const form = document.querySelector('form.store');
-            const formData = new FormData(form);
-            const response = await fetch(url+'/'+id,{
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-Token": csrfToken
-                },
-                method: "post",
-                credentials: "same-origin",
-                body: JSON.stringify(Object.fromEntries(formData))
-            });
-            await getData();
-            tambah();
-        } 
-        catch (err) {
-            console.error(err);
-        }
-    }
-    function tambah() {
-        formStore.innerHTML = innerHTML;
     }
     async function deleteData(id){
         event.preventDefault();

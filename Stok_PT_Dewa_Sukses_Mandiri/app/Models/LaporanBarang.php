@@ -11,6 +11,6 @@ class LaporanBarang extends Model
     Protected $table = 'laporan_barang';
 
     function LaporanBarangDetail(){
-        return $this->hasMany(LaporanBarangDetail::class);
+        return $this->hasMany(LaporanBarangDetail::class, 'id_laporan_barang','id');
     }
 }

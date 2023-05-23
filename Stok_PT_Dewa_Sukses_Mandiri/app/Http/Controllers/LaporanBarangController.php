@@ -25,4 +25,10 @@ class LaporanBarangController extends Controller
             return redirect()->route("laporan.index")->withErrors(['errors' => 'Data Barang Masuk tidak valid']);
         }
     }
+    public function show($id){
+        $laporan_barang = LaporanBarang::with(['LaporanBarangDetail' => function ($query) {
+            $query->with('Barang');
+        }])->first();
+        return view("laporan.detail", compact('laporan_barang'));
+    }
 }
