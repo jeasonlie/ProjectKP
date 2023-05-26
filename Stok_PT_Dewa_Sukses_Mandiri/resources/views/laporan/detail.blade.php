@@ -23,12 +23,12 @@
                 </tr>
             </thead>
             <tbody>
-            @if($laporan_barang->laporan_barang_detail)
-               @foreach($laporan_barang->laporan_barang_detail as $val)
+            @if($laporan_barang->LaporanBarangDetail)
+               @foreach($laporan_barang->LaporanBarangDetail as $val)
                <tr>
                     <td>{{$val->barang->id}}</td>
                     <td>{{$val->barang->nama_barang}}</td>
-                    <td>{{$val->barang->jumlah}}</td>
+                    <td>{{$val->jumlah}}</td>
                 </tr>
                @endforeach
             @endif

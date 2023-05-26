@@ -21,7 +21,7 @@
     </div>
     <br><br>
     <div class="table">
-        <table>
+        <table id="isi">
             <thead>
                 <tr>
                     <th>ID BARANG</th>
@@ -40,6 +40,8 @@
 @section('script')
 
 <script>
+    var dataTable = null;
+
     const formStore = document.querySelector('form.store');
     const innerHTML = formStore.innerHTML;
     const url = window.location.origin+"/api/barang";
@@ -78,6 +80,15 @@
                 rows += newRow;
             });
             table.innerHTML = rows;
+            if (dataTable !== null) {
+                dataTable.destroy();
+            }
+            dataTable = $('#isi').dataTable({
+                autoWidth: false,
+                compact: true,
+                scrollX: true,
+                searching: true
+            });
         }
         catch(err){
             console.error(err);

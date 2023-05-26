@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('laporan_barang', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('tanggal');
+            $table->date('tanggal');
             $table->text('keterangan')->nullable();
             $table->boolean('is_masuk');
             $table->timestamps();

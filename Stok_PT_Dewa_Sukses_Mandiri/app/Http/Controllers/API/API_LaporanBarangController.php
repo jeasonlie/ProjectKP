@@ -38,7 +38,7 @@ class API_LaporanBarangController extends Controller
     
             $increment = DB::select("SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA ='" . env('DB_DATABASE') . "' AND TABLE_NAME ='" . $laporan_barang->getTable() . "'")[0]->AUTO_INCREMENT;
     
-            $laporan_barang->tanggal = date('Y-m-d');
+            $laporan_barang->tanggal = $request->tanggal;
             $laporan_barang->keterangan = $request->keterangan;
             $laporan_barang->is_masuk = $request->is_masuk;
             $laporan_barang->save();

@@ -19,9 +19,6 @@
                         ID BARANG
                     </td>
                     <td>
-                        STOCK
-                    </td>
-                    <td>
                         JUMLAH MASUK/KELUAR
                     </td>
                 </tr>
@@ -30,9 +27,6 @@
                         <select class="select2-script" name="id_barang[]">
                             <option value="" style="display:none">--Pilih ID Barang--</option>
                         </select>
-                    </td>
-                    <td>
-                        <input type="number"  id="stok">
                     </td>
                     <td>
                         <input type="number" name="jumlah[]" id="">
@@ -46,6 +40,11 @@
             </table>
             <br>
             <div style="display:flex">
+                <div>
+                    <label for="">TANGGAL</label>
+                    <br>
+                    <input type="date" name="tanggal" id="">
+                </div>
                 <div>
                     <label for="">
                         KETERANGAN
@@ -75,11 +74,12 @@
         <table id="isi">
             <thead>
                 <tr>
-                    <th>N0</th>
+                    <th>NO</th>
                     <th>TANGGAL</th>
                     <th>NAMA BARANG</th>
                     <th>KETERANGAN</th>
                     <th>TIPE</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -94,6 +94,7 @@
     let i = 1;
     let j = 2;
     let data_barang = [];
+    var dataTable = null;
 
     function tambah_list() {
         const table = document.querySelector('#form');
@@ -104,9 +105,6 @@
                 <select class="select2-script" name="id_barang[]">
                     <option value="" style="display:none">Pilih ID Barang</option>
                 </select>
-            </td>
-            <td>
-                <input type="number"  id="stok">
             </td>
             <td>
                 <input type="number" name="jumlah[]" id="">
@@ -201,7 +199,7 @@
                             ${element.keterangan}
                         </td>
                         <td>
-                            ${element.is_masuk}
+                            ${element.is_masuk?'masuk':'keluar'}
                         </td>
                         <td>
                         <a href="/laporanbarang/${element.id}">
@@ -215,6 +213,15 @@
                 rows += newRow;
             });
             table.innerHTML = rows;
+            if (dataTable !== null) {
+                dataTable.destroy();
+            }
+            dataTable = $('#isi').dataTable({
+                autoWidth: false,
+                compact: true,
+                scrollX: true,
+                searching: true
+            });
         }
         catch(err){
             console.error(err);

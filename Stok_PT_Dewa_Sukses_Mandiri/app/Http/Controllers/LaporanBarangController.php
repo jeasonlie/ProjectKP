@@ -28,7 +28,7 @@ class LaporanBarangController extends Controller
     public function show($id){
         $laporan_barang = LaporanBarang::with(['LaporanBarangDetail' => function ($query) {
             $query->with('Barang');
-        }])->first();
+        }])->where('id', '=', $id)->first();
         return view("laporan.detail", compact('laporan_barang'));
     }
 }
