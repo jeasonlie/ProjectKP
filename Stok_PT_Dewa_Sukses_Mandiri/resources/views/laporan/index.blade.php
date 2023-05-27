@@ -13,7 +13,7 @@
                 + Barang
             </button>
             <br><br>
-            <table id="form">
+            <table class="" id="form">
                 <tr>
                     <td>
                         ID BARANG

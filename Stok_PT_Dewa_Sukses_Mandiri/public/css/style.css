@@ -131,7 +131,7 @@ body{
     color: #ffffff;
 }
 .judul-content{
-    margin-top: 90px;
+    margin-top: 10px;
 }
 .judul-content>.intro{
     font-size: 40px;
@@ -141,3 +141,4 @@ body{
 .title{
     font-size: 40px;
 }
+
