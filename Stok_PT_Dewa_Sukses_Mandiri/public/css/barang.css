@@ -1,0 +1,25 @@
+.sub-petunjuk-1{
+    background-color: #7BAF66;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    outline: 1px solid black;
+}
+.store input{
+    width: 90%;
+    height: 30px;
+    outline: 1px solid black;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.store button{
+    width: 30%;
+    height: 30px;
+    outline: 1px solid black;
+    border: none;
+    border-radius: 5px;
+    background-color: #7BAF66;
+    color: #ffffff;
+}

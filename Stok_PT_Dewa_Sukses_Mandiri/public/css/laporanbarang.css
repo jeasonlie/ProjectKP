@@ -1,0 +1,34 @@
+.sub-petunjuk-2{
+    background-color: #7BAF66;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    outline: 1px solid black;
+}
+.laporan-tambah{
+    background-color: #7BAF66;
+    color: #ffffff;
+    height: 30px;
+    width: 10%;
+    border-radius: 5px;
+    outline: 1px solid black;
+    border: none;
+}
+.btn-remove{
+    background-color: #A66C7D;
+    width: 80px;
+    border-radius: 5px;
+    outline: 1px solid black;
+    border: none;
+    color: #ffffff;
+}
+.tambah-laporan{
+    background-color: #7BAF66;
+    color: #ffffff;
+    height: 30px;
+    width: 30%;
+    border-radius: 5px;
+    outline: 1px solid black;
+    border: none;
+}

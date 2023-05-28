@@ -1,0 +1,22 @@
+.input-form input{
+    width: 90%;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+.admin-button{
+    width: 30%;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #7BAF66;
+    color: #ffffff;
+}
+.title{
+    font-size: 50px;
+    font-weight: 600;
+}

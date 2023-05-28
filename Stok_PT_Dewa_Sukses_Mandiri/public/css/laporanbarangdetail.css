@@ -1,0 +1,9 @@
+.kartu-detail{
+    width: fit-content;
+    padding: 10px;
+    background-color: #7BAF66;
+    color: white;
+    border: none;
+    outline: 1px solid black;
+    border-radius: 5px;
+}

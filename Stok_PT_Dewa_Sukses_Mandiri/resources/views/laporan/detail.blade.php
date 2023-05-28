@@ -1,10 +1,11 @@
 @extends('layout.layout')
 @section('content')
+<link rel="stylesheet" href="{{asset('css/laporanbarangdetail.css')}}">
 <div class="title">
         DETAIL LAPORAN BARANG
     </div>
     <br>
-    <div class="">
+    <div class="kartu-detail">
         <p>
             <b>Tanggal : </b> {{$laporan_barang->created_at}}
         </p>
@@ -35,4 +36,12 @@
             </tbody>
         </table>
     </div>
+<script>
+    $('#isi').dataTable({
+        autoWidth: false,
+        compact: true,
+        scrollX: true,
+        searching: true
+    });
+</script>
 @endsection

@@ -1,11 +1,11 @@
 @extends('layout.layout')
 @section('content')
-<div class="title">
-        LAPORAN BARANG
-    <div class="sub-title">
-        <div class="sub-petunjuk-2">
+<link rel="stylesheet" href="{{asset('css/laporanbarang.css')}}">
+    <div class="title">
+            LAPORAN BARANG
+        </div>
+    <div class="sub-petunjuk-2">
         Petunjuk untuk Menginput Laporan Barang :
-        </div> 
         <div class="isi-petunjuk-2">
             <li>Klik menu Laporan Barang</li>
             <li>Jika ingin menambah list barang, Klik Button + Barang</li>
@@ -14,13 +14,12 @@
             <li>Masukkan Tanggal yang sesuai</li>
             <li>Masukkan Keterangan</li>
             <li>Pilih Opsi Barang</li>
-        </div>
+        </div> 
     </div>
-</div>
     <br>
     <div class="input">
         <form class="store" action="">
-            <button type = "button" onclick="tambah_list()">
+            <button class="laporan-tambah"type = "button" onclick="tambah_list()">
                 + Barang
             </button>
             <br><br>
@@ -29,22 +28,24 @@
                     <td>
                         ID BARANG
                     </td>
+                    
                     <td>
+                        <div style="margin-left:10px">
                         JUMLAH MASUK/KELUAR
+                        </div>
                     </td>
                 </tr>
                 <tr id="tr-1">
                     <td>
                         <select class="select2-script" name="id_barang[]">
-                            <option value="" style="display:none">--Pilih ID Barang--</option>
                         </select>
                     </td>
                     <td>
-                        <input type="number" name="jumlah[]" id="">
+                        <input type="number" name="jumlah[]" id="" style="margin-left:10px">
                     </td>
                     <td>
                         <button type = "button" class="btn-remove" onclick="hapus_list('tr-1')" style="display:none">
-                            - BARANG
+                            - Barang
                         </button>
                     </td>
                 </tr>
@@ -54,16 +55,16 @@
                 <div>
                     <label for="">TANGGAL</label>
                     <br>
-                    <input type="date" name="tanggal" id="">
+                    <input type="date" name="tanggal" id="" style="width:193px">
                 </div>
                 <div>
-                    <label for="">
+                    <label for="" style="margin-left:10px">
                         KETERANGAN
                     </label>
                     <br>
-                    <input type="text" name="keterangan">
+                    <input type="text" name="keterangan" style="margin-left:10px">
                 </div>
-                <div>
+                <div class="opsi" style="margin-left:10px">
                     <label for="">
                         OPSI
                     </label>
@@ -75,7 +76,7 @@
                 </div>
             </div>
             <br>
-            <button onclick="storeData()">
+            <button class="tambah-laporan"onclick="storeData()">
                 TAMBAH
             </button>
         </form>
@@ -118,7 +119,7 @@
                 </select>
             </td>
             <td>
-                <input type="number" name="jumlah[]" id="">
+                <input type="number" name="jumlah[]" id="" style="margin-left:10px">
             </td>
             <td>
                 <button type="button" class="btn-remove" onclick="hapus_list('tr-${j}')">

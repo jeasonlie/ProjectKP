@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporanbarang', [LaporanBarangController::class,'index']);
     Route::get('/laporanbarang/{detail}', [LaporanBarangController::class,'show']);
     Route::get('/user', [UserController::class,'index']);
+    Route::post('/user',[UserController::class,'store'])->name('user.store');
 });
 
 require __DIR__.'/auth.php';
