@@ -83,12 +83,12 @@
                             ${element.total_masuk - element.total_keluar}
                         </td>
                         <td>
-                            <button class="edit-${element.id}"onClick = 'edit(${JSON.stringify(element)});'>
+                            <button class="edit-${element.id} edit" onClick = 'edit(${JSON.stringify(element)});'>
                                 Edit
                             </button>
                         </td>
                         <td>
-                            <button onClick = 'deleteData(${element.id})'>
+                            <button class="hapus" onClick = 'deleteData(${element.id})'>
                                 Delete
                             </button>
                         </td>
@@ -112,13 +112,14 @@
         }
     }
     function edit(obj){
+        console.log(obj.nama_barang);
         formStore.innerHTML = 
         `
         <label for="">
                 NAMA BARANG
             </label>
             <br>
-            <input type="text" name="nama" id="" value=${obj.nama_barang}>
+            <input type="text" name="nama" id="" value="${obj.nama_barang}">
             <br>
             <br>
             <button onClick = 'updateData(${obj.id})'>

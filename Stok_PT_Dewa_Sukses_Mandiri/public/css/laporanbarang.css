@@ -32,3 +32,11 @@
     outline: 1px solid black;
     border: none;
 }
+.detail{
+    width: 50px;
+    background-color: #3C748B;
+    border: 1px solid black;
+    outline: none;
+    color: #ffffff;
+    border-radius: 5px;
+}

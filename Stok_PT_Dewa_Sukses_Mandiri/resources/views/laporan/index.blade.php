@@ -28,7 +28,6 @@
                     <td>
                         ID BARANG
                     </td>
-                    
                     <td>
                         <div style="margin-left:10px">
                         JUMLAH MASUK/KELUAR
@@ -41,7 +40,7 @@
                         </select>
                     </td>
                     <td>
-                        <input type="number" name="jumlah[]" id="" style="margin-left:10px">
+                        <input required type="number" name="jumlah[]" id="" style="margin-left:10px">
                     </td>
                     <td>
                         <button type = "button" class="btn-remove" onclick="hapus_list('tr-1')" style="display:none">
@@ -55,14 +54,14 @@
                 <div>
                     <label for="">TANGGAL</label>
                     <br>
-                    <input type="date" name="tanggal" id="" style="width:193px">
+                    <input required type="date" name="tanggal" id="" style="width:193px">
                 </div>
                 <div>
                     <label for="" style="margin-left:10px">
                         KETERANGAN
                     </label>
                     <br>
-                    <input type="text" name="keterangan" style="margin-left:10px">
+                    <input required type="text" name="keterangan" style="margin-left:10px">
                 </div>
                 <div class="opsi" style="margin-left:10px">
                     <label for="">
@@ -119,7 +118,7 @@
                 </select>
             </td>
             <td>
-                <input type="number" name="jumlah[]" id="" style="margin-left:10px">
+                <input required type="number" name="jumlah[]" id="" style="margin-left:10px">
             </td>
             <td>
                 <button type="button" class="btn-remove" onclick="hapus_list('tr-${j}')">
@@ -215,7 +214,7 @@
                         </td>
                         <td>
                         <a href="/laporanbarang/${element.id}">
-                            <button>
+                            <button class="detail">
                                 DETAIL
                             </button>
                         </a>

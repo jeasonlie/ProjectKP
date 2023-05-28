@@ -162,3 +162,38 @@ body{
 .table table{
     border: 1px solid black;
 }
+.detail{
+    width: 50px;
+    background-color: #3C748B;
+    border: 1px solid black;
+    outline: none;
+    color: #ffffff;
+    border-radius: 5px;
+}
+thead tr{
+    background-color: #7BAF66;
+    color: #ffffff;
+}
+#isi_length{
+    padding-bottom: 20px;
+}
+#isi_filter{
+    padding-bottom: 20px;
+}
+.dataTables_scrollBody{
+    background-color: #ffffff;
+}
+.dataTables_wrapper{
+    width: 90%;
+}
+.input-group{
+    padding-bottom: 20px;
+}
+.btn{
+    width: 50px;
+    border: 1px solid black;
+    outline: none;
+    background-color: #3C748B;
+    color: #ffffff;
+    border-radius: 5px;
+}

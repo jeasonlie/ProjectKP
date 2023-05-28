@@ -23,3 +23,19 @@
     background-color: #7BAF66;
     color: #ffffff;
 }
+.edit{
+    width: 50px;
+    background-color: #3C748B;
+    border: 1px solid black;
+    outline: none;
+    color: #ffffff;
+    border-radius: 5px;
+}
+.hapus{
+    width: 50px;
+    background-color: #A66C7D;
+    border: 1px solid black;
+    outline: none;
+    color: #ffffff;
+    border-radius: 5px;
+}
