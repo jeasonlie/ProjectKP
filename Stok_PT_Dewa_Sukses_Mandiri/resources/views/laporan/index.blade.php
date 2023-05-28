@@ -2,10 +2,21 @@
 @section('content')
 <div class="title">
         LAPORAN BARANG
-        <div class="sub-title">
-            Ketuk + Untuk Menambah List Barang
+    <div class="sub-title">
+        <div class="sub-petunjuk-2">
+        Petunjuk untuk Menginput Laporan Barang :
+        </div> 
+        <div class="isi-petunjuk-2">
+            <li>Klik menu Laporan Barang</li>
+            <li>Jika ingin menambah list barang, Klik Button + Barang</li>
+            <li>Pilih Barang yang mau diinput</li>
+            <li>Masukkan Jumlah Barang</li>
+            <li>Masukkan Tanggal yang sesuai</li>
+            <li>Masukkan Keterangan</li>
+            <li>Pilih Opsi Barang</li>
         </div>
     </div>
+</div>
     <br>
     <div class="input">
         <form class="store" action="">
@@ -54,7 +65,7 @@
                 </div>
                 <div>
                     <label for="">
-                        TIPE
+                        OPSI
                     </label>
                     <br>
                     <select name="is_masuk" id="">

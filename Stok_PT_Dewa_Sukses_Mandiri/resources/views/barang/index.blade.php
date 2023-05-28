@@ -3,6 +3,22 @@
     <div class="title">
         BARANG
     </div>
+    <div class="petunjuk-1">
+    <div class="sub-petunjuk-1">
+        Petunjuk untuk Menginput Barang : 
+        <div class="isi-petunjuk-1">
+            <li>Klik menu Barang</li>
+            <li>Masukkan Nama Barang</li>
+            <li>Klik Button Tambah</li>
+        </div>
+        <br>
+        <div class="reminder-1">
+            Perlu diingat :
+            <div class="isi-reminder-1">
+                <li>Setelah menginput Barang, maka secara otomatis stock barang nya akan menjadi 0</li>
+                <li>Untuk menambah Stock Barang, maka anda harus menginput Laporan Barang Terlebih Dahulu</li>
+        </div>
+    </div>
     <br>
     <div class="input">
         <form class="store">

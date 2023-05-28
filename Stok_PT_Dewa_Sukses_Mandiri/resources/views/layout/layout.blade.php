@@ -31,10 +31,16 @@
         </div>
         <div class="sidebar-user">
             <div class="nama">
-                <div class="user">Nama</div>
-                <div class="user">Role</div>
+                <div class="user">{{ Auth::user()->name }}</div>
             </div>
-            <div class="logout"><a href=""><img src="{{asset('logout.svg')}}" alt=""> logout</a></div>
+            <form id="keluar" method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button id="keluar" onclick="event.preventDefault();
+                    this.closest('form').submit();">
+                    <img src="{{asset('logout.svg')}}" alt="">
+                    Logout
+                </button>
+                </form>
         </div>
     </div>
     <div class="content">
