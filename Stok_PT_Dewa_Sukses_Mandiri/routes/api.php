@@ -26,7 +26,7 @@ Route::post('/barang/{id}', [API_BarangController::class,'update']);
 Route::post('/barang', [API_BarangController::class,'store']);
 Route::delete('/barang/{id}', [API_BarangController::class,'destroy']);
 
-Route::get('/laporanbarang', [API_LaporanBarangController::class,'index']);
-Route::post('/laporanbarang/{id}', [API_LaporanBarangController::class,'update']);
-Route::post('/laporanbarang', [API_LaporanBarangController::class,'store']);
-Route::delete('/laporanbarang/{id}', [API_LaporanBarangController::class,'destroy']);
+Route::get('/transaksibarang', [API_LaporanBarangController::class,'index']);
+Route::post('/transaksibarang/{id}', [API_LaporanBarangController::class,'update']);
+Route::post('/transaksibarang', [API_LaporanBarangController::class,'store']);
+Route::delete('/transaksibarang/{id}', [API_LaporanBarangController::class,'destroy']);

@@ -1,8 +1,12 @@
 @extends('layout.layout')
 @section('content')
+<div class="modal hidden">
+    
+</div>
 <link rel="stylesheet" href="{{asset('css/barang.css')}}">
-    <div class="title">
-        BARANG
+<link rel="stylesheet" href="{{asset('css/modal.css')}}">
+    <div class="title" style="font-weight:600">
+        Barang
     </div>
     <div class="sub-petunjuk-1">
         Petunjuk untuk Menginput Barang : 
@@ -57,7 +61,7 @@
 @section('script')
 
 <script>
-    var dataTable = null;
+    let dataTable = null;
 
     const formStore = document.querySelector('form.store');
     const innerHTML = formStore.innerHTML;
@@ -65,6 +69,25 @@
     getData();
     async function getData(){
         try{
+            if (dataTable !== null) {
+                document.querySelector('#isi').remove();
+                document.querySelector('.table').innerHTML = `
+                <table id="isi">
+                    <thead>
+                        <tr>
+                            <th>ID BARANG</th>
+                            <th>NAMA BARANG</th>
+                            <th>STOCK</th>
+                            <th>EDIT</th>
+                            <th>DELETE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+                `
+            }
             const response = await fetch(url);
             const data = await response.json();
             const table = document.querySelector('table tbody');
@@ -88,7 +111,7 @@
                             </button>
                         </td>
                         <td>
-                            <button class="hapus" onClick = 'deleteData(${element.id})'>
+                            <button class="hapus" onClick = 'modal_delete(${element.id})'>
                                 Delete
                             </button>
                         </td>
@@ -97,9 +120,7 @@
                 rows += newRow;
             });
             table.innerHTML = rows;
-            if (dataTable !== null) {
-                dataTable.destroy();
-            }
+            
             dataTable = $('#isi').dataTable({
                 autoWidth: false,
                 compact: true,
@@ -110,6 +131,24 @@
         catch(err){
             console.error(err);
         }
+    }
+    function modal_delete(id) {
+        modal = document.querySelector('.modal');
+        modal.classList.toggle('hidden');
+        modal.innerHTML = `
+        <div class="modal-content" style="gap: 8px;">
+            <h2>Delete Barang</h2>
+            <p>Apakah anda sudah yakin untuk delete barang ?</p>
+            <div class="button flex-row" style="padding-top:10px">
+                <button class="clickable" id="hapus" onclick="deleteData(${id})">Hapus</button>
+                <button class="clickable" id="batal" onclick="modalLogoutToggle()">Batal</button>
+            </div>
+        </div>
+        `
+    }
+    function modalLogoutToggle() {
+        const modal = document.querySelector('.modal');
+        modal.classList.toggle('hidden');
     }
     function edit(obj){
         console.log(obj.nama_barang);
@@ -187,6 +226,8 @@
                 credentials: "same-origin",
             });
             await getData();
+            modal = document.querySelector('.modal');
+            modal.classList.toggle('hidden');
         } 
         catch (err) {
             console.error(err);

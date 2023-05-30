@@ -10,7 +10,7 @@
     <div class="content-jumlah">
         <a href="/barang">
             <div>
-                Jumlah Barang
+                Total Barang
             </div>
             <div class="jumlah">
                 {{count($barang_jumlah)}}
@@ -18,9 +18,9 @@
         </a>
     </div>
     <div class="content-masuk">
-        <a href="/laporanbarang">
+        <a href="/transaksibarang">
             <div>
-                Jumlah Laporan Masuk
+                Barang Masuk
             </div>
             <div class="jumlah">
                 {{count($barang_masuk)}}
@@ -28,9 +28,9 @@
         </a>
     </div>
     <div class="content-keluar">
-    <a href="/laporanbarang">
+    <a href="/transaksibarang">
             <div>
-                Jumlah Laporan Keluar
+                Barang Keluar
             </div>
             <div class="jumlah">
                 {{count($barang_keluar)}}
@@ -89,7 +89,7 @@
     </table>
 </div>
 <script>
-    const url = window.location.origin+"/api/laporanbarang";
+    const url = window.location.origin+"/api/transaksibarang";
     $('document').ready(function () {
         $('#isi').dataTable({
             autoWidth: false,

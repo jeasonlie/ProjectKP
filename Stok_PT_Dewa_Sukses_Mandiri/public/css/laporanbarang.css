@@ -1,6 +1,6 @@
 .sub-petunjuk-2{
     background-color: #7BAF66;
-    width: fit-content;
+    width: 90%;
     padding: 10px;
     border-radius: 5px;
     color: #ffffff;
@@ -39,4 +39,10 @@
     outline: none;
     color: #ffffff;
     border-radius: 5px;
+}
+.select2-container{
+    width: 190px !important;
+}
+.select2-script{
+    width: 190px !important;
 }

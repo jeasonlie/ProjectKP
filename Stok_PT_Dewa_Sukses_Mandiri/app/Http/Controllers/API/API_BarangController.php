@@ -14,27 +14,27 @@ class API_BarangController extends Controller
         FROM barang
         LEFT JOIN (
             SELECT *
-            FROM laporan_barang
+            FROM transaksi_barang
             WHERE is_masuk = 1
         ) AS masuk ON masuk.id = barang.id
         LEFT JOIN (
-            SELECT laporan_barang.id, laporan_barang_detail.id_barang, SUM(laporan_barang_detail.jumlah) AS total_masuk
-            FROM laporan_barang_detail
-            INNER JOIN laporan_barang ON laporan_barang.id = laporan_barang_detail.id_laporan_barang
-            WHERE laporan_barang.is_masuk = 1
-            GROUP BY laporan_barang.id, laporan_barang_detail.id_barang  -- Include laporan_barang.id in the GROUP BY clause
+            SELECT transaksi_barang.id, transaksi_barang_detail.id_barang, SUM(transaksi_barang_detail.jumlah) AS total_masuk
+            FROM transaksi_barang_detail
+            INNER JOIN transaksi_barang ON transaksi_barang.id = transaksi_barang_detail.id_laporan_barang
+            WHERE transaksi_barang.is_masuk = 1
+            GROUP BY transaksi_barang.id, transaksi_barang_detail.id_barang  -- Include transaksi_barang.id in the GROUP BY clause
         ) AS barang_masuk ON barang_masuk.id_barang = barang.id
         LEFT JOIN (
             SELECT *
-            FROM laporan_barang
+            FROM transaksi_barang
             WHERE is_masuk = 0
         ) AS keluar ON keluar.id = barang.id
         LEFT JOIN (
-            SELECT laporan_barang.id, laporan_barang_detail.id_barang, SUM(laporan_barang_detail.jumlah) AS total_keluar
-            FROM laporan_barang_detail
-            INNER JOIN laporan_barang ON laporan_barang.id = laporan_barang_detail.id_laporan_barang
-            WHERE laporan_barang.is_masuk = 0
-            GROUP BY laporan_barang.id, laporan_barang_detail.id_barang  -- Include laporan_barang.id in the GROUP BY clause
+            SELECT transaksi_barang.id, transaksi_barang_detail.id_barang, SUM(transaksi_barang_detail.jumlah) AS total_keluar
+            FROM transaksi_barang_detail
+            INNER JOIN transaksi_barang ON transaksi_barang.id = transaksi_barang_detail.id_laporan_barang
+            WHERE transaksi_barang.is_masuk = 0
+            GROUP BY transaksi_barang.id, transaksi_barang_detail.id_barang  -- Include transaksi_barang.id in the GROUP BY clause
         ) AS barang_keluar ON barang_keluar.id_barang = barang.id
         GROUP BY barang.id, barang.nama_barang
         ");

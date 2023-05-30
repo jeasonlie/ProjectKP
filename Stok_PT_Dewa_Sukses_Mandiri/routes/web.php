@@ -28,8 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/barang', [BarangController::class,'index']);
-    Route::get('/laporanbarang', [LaporanBarangController::class,'index']);
-    Route::get('/laporanbarang/{detail}', [LaporanBarangController::class,'show']);
+    Route::get('/transaksibarang', [LaporanBarangController::class,'index']);
+    Route::get('/transaksibarang/{detail}', [LaporanBarangController::class,'show']);
     Route::get('/user', [UserController::class,'index']);
     Route::post('/user',[UserController::class,'store'])->name('user.store');
 });

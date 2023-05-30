@@ -1,13 +1,13 @@
 @extends('layout.layout')
 @section('content')
 <link rel="stylesheet" href="{{asset('css/laporanbarang.css')}}">
-    <div class="title">
-            LAPORAN BARANG
+    <div class="title" style="font-weight:600">
+            Transaksi Barang
         </div>
     <div class="sub-petunjuk-2">
-        Petunjuk untuk Menginput Laporan Barang :
+        Petunjuk untuk Menginput Transaksi Barang :
         <div class="isi-petunjuk-2">
-            <li>Klik menu Laporan Barang</li>
+            <li>Klik menu Transaksi Barang</li>
             <li>Jika ingin menambah list barang, Klik Button + Barang</li>
             <li>Pilih Barang yang mau diinput</li>
             <li>Masukkan Jumlah Barang</li>
@@ -167,7 +167,7 @@
     }
     const formStore = document.querySelector('form.store');
     const innerHTML = formStore.innerHTML;
-    const url = window.location.origin+"/api/laporanbarang";
+    const url = window.location.origin+"/api/transaksibarang";
     getData();
     ambilDataBuatSelect();
     async function ambilDataBuatSelect(){

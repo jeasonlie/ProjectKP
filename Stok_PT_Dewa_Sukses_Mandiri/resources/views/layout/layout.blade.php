@@ -25,7 +25,7 @@
             <div class="menu"><a href="/dashboard">Dashboard</a></div>
             <div class="menu"><a href="/user">Admin</a></div>
             <div class="menu"><a href="/barang">Barang</a></div>
-            <div class="menu"><a href="/laporanbarang">Laporan Barang</a></div>
+            <div class="menu"><a href="/transaksibarang">Transaksi Barang</a></div>
         </div>
         <div class="sidebar-user">
             <div class="nama">
