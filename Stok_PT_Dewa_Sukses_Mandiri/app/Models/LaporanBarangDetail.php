@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LaporanBarangDetail extends Model
 {
     use HasFactory;
-    Protected $table = 'transaksi_barang_detail';
+    Protected $table = 'penyimpanan_barang_detail';
 
     public function Barang(){
         return $this->belongsTo(Barang::class, 'id_barang','id');

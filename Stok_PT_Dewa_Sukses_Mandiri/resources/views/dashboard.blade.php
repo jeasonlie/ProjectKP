@@ -18,7 +18,7 @@
         </a>
     </div>
     <div class="content-masuk">
-        <a href="/transaksibarang">
+        <a href="/penyimpananbarang">
             <div>
                 Barang Masuk
             </div>
@@ -28,7 +28,7 @@
         </a>
     </div>
     <div class="content-keluar">
-    <a href="/transaksibarang">
+    <a href="/penyimpananbarang">
             <div>
                 Barang Keluar
             </div>

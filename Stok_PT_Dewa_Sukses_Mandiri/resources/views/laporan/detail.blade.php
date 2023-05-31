@@ -1,8 +1,8 @@
 @extends('layout.layout')
 @section('content')
 <link rel="stylesheet" href="{{asset('css/laporanbarangdetail.css')}}">
-<div class="title">
-        DETAIL LAPORAN BARANG
+<div class="title" style="font-weight:600">
+        Detail Data Barang
     </div>
     <br>
     <div class="kartu-detail">

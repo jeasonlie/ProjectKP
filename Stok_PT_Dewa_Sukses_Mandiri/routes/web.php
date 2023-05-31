@@ -21,8 +21,8 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/barang', [BarangController::class,'index']);
-    Route::get('/transaksibarang', [LaporanBarangController::class,'index']);
-    Route::get('/transaksibarang/{detail}', [LaporanBarangController::class,'show']);
+    Route::get('/penyimpananbarang', [LaporanBarangController::class,'index']);
+    Route::get('/penyimpananbarang/{detail}', [LaporanBarangController::class,'show']);
     Route::get('/user', [UserController::class,'index']);
     Route::post('/user',[UserController::class,'store'])->name('user.store');
 });

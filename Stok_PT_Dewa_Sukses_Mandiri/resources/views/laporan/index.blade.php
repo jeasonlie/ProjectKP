@@ -2,12 +2,12 @@
 @section('content')
 <link rel="stylesheet" href="{{asset('css/laporanbarang.css')}}">
     <div class="title" style="font-weight:600">
-            Transaksi Barang
+            Pendataan Barang
         </div>
     <div class="sub-petunjuk-2">
-        Petunjuk untuk Menginput Transaksi Barang :
+        Petunjuk untuk Menginput Pendataan Barang :
         <div class="isi-petunjuk-2">
-            <li>Klik menu Transaksi Barang</li>
+            <li>Klik menu Pendataan Barang</li>
             <li>Jika ingin menambah list barang, Klik Button + Barang</li>
             <li>Pilih Barang yang mau diinput</li>
             <li>Masukkan Jumlah Barang</li>
@@ -167,7 +167,7 @@
     }
     const formStore = document.querySelector('form.store');
     const innerHTML = formStore.innerHTML;
-    const url = window.location.origin+"/api/transaksibarang";
+    const url = window.location.origin+"/api/penyimpananbarang";
     getData();
     ambilDataBuatSelect();
     async function ambilDataBuatSelect(){
@@ -213,7 +213,7 @@
                             ${element.is_masuk?'masuk':'keluar'}
                         </td>
                         <td>
-                        <a href="/laporanbarang/${element.id}">
+                        <a href="/penyimpananbarang/${element.id}">
                             <button class="detail">
                                 DETAIL
                             </button>
