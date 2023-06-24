@@ -196,14 +196,16 @@
                         </td>
                         <td>
                             `
-                            newRow+=new Date(element.created_at).toISOString().slice(0, 10)
+                            newRow+=new Date(element.tanggal).toISOString().slice(0, 10)
                             newRow+=`
                         </td>
                         <td>
                             `
                             for (let i = 0; i < element.laporan_barang_detail.length; i++) {
                                 newRow+=`${element.laporan_barang_detail[i].barang.nama_barang}`
-                            }
+                            if (i != element.laporan_barang_detail.length-1) {
+                                newRow+=', '
+                            }}
                             newRow+=`
                         </td>
                         <td>
